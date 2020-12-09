@@ -1,0 +1,162 @@
+<!DOCTYPE HTML>
+<!--
+	Aerial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>봉자 찾기 프로젝트</title>
+		<meta charset="utf-8" />
+		<meta value="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/import.css') }}" />
+		<style type="text/css"> 
+			@import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);				
+			html, body {font-family: 'Nanum Gothic', sans-serif; font-weight: 500; font-style: normal;}
+			.map-container{
+				overflow:hidden;
+				padding-bottom:56.25%;
+				position:relative;
+				height:0;
+			}
+			.map-container iframe{
+			left:0;
+			top:0;
+			height:100%;
+			width:100%;
+			position:absolute;
+			}
+		</style>
+		<script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/mdb.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/getResult.js') }}"></script>
+		<script>
+			$(document).ready(function() {
+
+				// SideNav Button Initialization
+				$(".button-collapse").sideNav();
+				// SideNav Scrollbar Initialization
+				var sideNavScrollbar = document.querySelector('.custom-scrollbar');
+				var ps = new PerfectScrollbar(sideNavScrollbar);
+			  })
+
+			  function waitForResult(){
+				// $('#loader').append('<div class="progress md-progress peach-gradient">\
+				// <div class="indeterminate"></div>\
+				// </div>\
+				// ');
+			  
+				$('#loader').append('<div class="preloader-wrapper big active">\
+				<div class="spinner-layer spinner-blue-only">\
+				  <div class="circle-clipper left">\
+					<div class="circle"></div>\
+				  </div>\
+				  <div class="gap-patch">\
+					<div class="circle"></div>\
+				  </div>\
+				  <div class="circle-clipper right">\
+					<div class="circle"></div>\
+				  </div>\
+				</div>\
+			  </div>');
+			  }
+			  
+		</script>
+
+		
+	</head>
+		 <!--Main Navigation-->
+	<body class="fixed-sn grey-skin">
+
+		<!--Double navigation-->
+		<header>
+			<!-- Sidebar navigation -->
+			<div id="slide-out" class="side-nav fixed">
+			<ul class="custom-scrollbar">
+				<!-- Logo -->
+				<li>
+				<div class="logo-wrapper waves-light">
+					<a href="#"><img src="{{ url_for('static', filename='css/images/logo.png')}}" class="img-fluid flex-center"></a>
+				</div>
+				</li>
+				<!--/. Logo -->
+
+				<!-- Side navigation links -->
+				<li>
+				<ul class="collapsible collapsible-accordion">
+					<li><a class="collapsible-header waves-effect" href ="/instruction"><i class="far fa-hand-pointer"></i>
+						Instruction</a>
+					</li>
+					<li><a class="collapsible-header waves-effect active"><i class="fas fa-eye"></i> Try Self</a>
+					</li>
+				</li>
+				<!--/. Side navigation links -->
+			</ul>
+			<div class="sidenav-bg mask-strong"></div>
+			</div>
+			<!--/. Sidebar navigation -->
+			<!-- Navbar -->
+			<nav class="navbar navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav">
+			<!-- SideNav slide-out button -->
+			<div class="float-left">
+				<a href="#" data-activates="slide-out" class="button-collapse"><i class="fas fa-bars"></i></a>
+			</div>
+			<!-- Breadcrumb-->
+			<div class="breadcrumb-dn mr-auto">
+				<p>봉자 찾기 프로젝트</p>
+			</div>
+			<ul class="nav navbar-nav nav-flex-icons ml-auto">
+				<li class="nav-item">
+					<span class="clearfix d-none d-sm-inline-block">융합시스템공학과 인공지능시스템 3조</span>
+				</li>
+			</ul>
+			</nav>
+			<!-- /.Navbar -->
+		</header>
+		<!--/.Double navigation-->
+	
+		<!--Main layout-->
+		<main class="mt-5 pt-5">
+			<div class="container">
+
+				<div id = 'loader'></div>	
+
+				<form class="md-form" action="/result" method = "POST"  enctype = "multipart/form-data">
+					<div class="file-field medium">
+					  <div class="btn btn-outline-primary waves-effect float-left">
+						<span>파일 선택<i class="fas fa-cloud-upload-alt ml-3" aria-hidden="true"></i></span>
+						<input type="file" id="file" name="file" multiple>
+					  </div>
+					  <div class="file-path-wrapper">
+						<input class="file-path validate" type="text" placeholder="이미지를 업로드하세요">
+					  </div>
+					  <div class="float-right">
+						<button class="btn btn-primary btn-rounded" type="submit" id="search" onclick="waitForResult()">봉자 찾기</button>
+					  </div>
+					  
+					</div>				
+				</form>
+
+				<br/>
+
+				{% if result is defined and result|length %}
+				<div class="card border-info mt-5 mb-3 text-center"  style="width: 40rem;" >
+					<div class="card-header">결과</div>
+					<div class="card-body text-info">
+					  <h5 class="card-title">입력된 이미지 : </h5>
+					  <img src="{{ url_for('static', filename='input_file/'+ input_file)}}" class="img-fluid center">
+					</div>
+					<div class="card-footer bg-transparent border-success"><h3><strong>{{result}}</strong></h3></div>
+				  </div>
+				{% endif %}
+	
+			</div>
+		</main>
+		<!--Main layout-->
+	
+		
+	
+	</body>
+</html>

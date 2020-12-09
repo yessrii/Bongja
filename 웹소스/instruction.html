@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<!--
+	Aerial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>봉자 찾기 프로젝트</title>
+		<meta charset="utf-8" />
+		<meta value="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/import.css') }}" />
+		<style type="text/css"> 
+			@import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);				
+			html, body {font-family: 'Nanum Gothic', sans-serif; font-weight: 500; font-style: normal;}
+			.map-container{
+				overflow:hidden;
+				padding-bottom:56.25%;
+				position:relative;
+				height:0;
+			}
+			.map-container iframe{
+			left:0;
+			top:0;
+			height:100%;
+			width:100%;
+			position:absolute;
+			}
+		</style>
+		<script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/mdb.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/searchTown.js') }}"></script>
+		<script>
+			$(document).ready(function() {
+
+				// SideNav Button Initialization
+				$(".button-collapse").sideNav();
+				// SideNav Scrollbar Initialization
+				var sideNavScrollbar = document.querySelector('.custom-scrollbar');
+				var ps = new PerfectScrollbar(sideNavScrollbar);
+			  })
+		</script>
+
+		
+	</head>
+		 <!--Main Navigation-->
+	<body class="fixed-sn grey-skin">
+
+		<!--Double navigation-->
+		<header>
+			<!-- Sidebar navigation -->
+			<div id="slide-out" class="side-nav fixed">
+			<ul class="custom-scrollbar">
+				<!-- Logo -->
+				<li>
+				<div class="logo-wrapper waves-light">
+					<a href="#"><img src="{{ url_for('static', filename='css/images/logo.png')}}" class="img-fluid flex-center"></a>
+				</div>
+				</li>
+				<!--/. Logo -->
+
+				<!-- Side navigation links -->
+				<li>
+				<ul class="collapsible collapsible-accordion">
+					<li><a class="collapsible-header waves-effect active"><i class="far fa-hand-pointer"></i>
+						Instruction</a>
+					</li>
+					<li><a class="collapsible-header waves-effect" href="/try"><i class="fas fa-eye"></i> Try Self</a>
+					</li>
+				</li>
+				<!--/. Side navigation links -->
+			</ul>
+			<div class="sidenav-bg mask-strong"></div>
+			</div>
+			<!--/. Sidebar navigation -->
+			<!-- Navbar -->
+			<nav class="navbar navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav">
+			<!-- SideNav slide-out button -->
+			<div class="float-left">
+				<a href="#" data-activates="slide-out" class="button-collapse"><i class="fas fa-bars"></i></a>
+			</div>
+			<!-- Breadcrumb-->
+			<div class="breadcrumb-dn mr-auto">
+				<p>봉자 찾기 프로젝트</p>
+			</div>
+			<ul class="nav navbar-nav nav-flex-icons ml-auto">
+				<li class="nav-item">
+					<span class="clearfix d-none d-sm-inline-block">융합시스템공학과 인공지능시스템 3조</span>
+				</li>
+			</ul>
+			</nav>
+			<!-- /.Navbar -->
+		</header>
+		<!--/.Double navigation-->
+	
+		<!--Main layout-->
+		<main class="mt-5 pt-5">
+			<div class="container">
+				
+				
+				<!-- 16:9 aspect ratio -->
+				<div class="embed-responsive embed-responsive-16by9">
+					<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/5UuJkxPsA3U?autoplay=1&amp;mute=1&amp;controls=0&amp;loop=1"></iframe>
+				</div>
+			</div>
+		</main>
+		<!--Main layout-->
+	
+		
+	
+	</body>
+</html>
